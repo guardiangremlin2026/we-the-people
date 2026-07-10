@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WE THE PEOPLE • FOURTH BRANCH</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#b91c1c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&amp;family=Inter:wght@300;400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
+        :root {
+            --revolution-red: #b91c1c;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .logo-font {
+            font-family: 'UnifrakturCook', system_ui, serif;
+            letter-spacing: 2px;
+        }
+
+        .revolution-font {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        .section-header {
+            font-size: 1.75rem;
+            line-height: 1.1;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .gov-card {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .gov-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .nav-active {
+            background-color: #450a0a;
+            color: white;
+            border-color: #b91c1c;
+        }
+
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .proposal-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .manifesto-text {
+            font-size: 1.05rem;
+            line-height: 1.75;
+        }
+
+        .republic-bg {
+            background-image: 
+                linear-gradient(rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.92)),
+                url('data:image/svg+xml,%3Csvg width=%22600%22 height=%22600%22 viewBox=%220 0 600 600%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill-rule=%22evenodd%22%3E%3Cpath fill=%22%23334155%22 fill-opacity=%22008%22 d=%22M300 300l300-300H0zM0 600l300-300v300z%22/%3E%3C/g%3E%3C/svg%27');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .sovereign-badge {
+            background: linear-gradient(90deg, #450a0a, #7f1d1d);
+            box-shadow: 0 0 15px rgba(185, 28, 28, 0.3);
+        }
+
+        .tx-hash {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 0.75rem;
+            word-break: break-all;
+        }
+
+        .revolution-btn {
+            transition: all 0.1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .revolution-btn:hover {
+            transform: translateY(-1px);
+        }
+        
+        .revolution-btn:active {
+            transform: scale(0.985);
+        }
+
+        .nav-link {
+            transition: all 0.1s ease;
+        }
+        
+        .nav-link:hover {
+            color: #f87171;
+        }
+
+        .metric {
+            transition: all 0.3s ease;
+        }
+
+        .vote-btn {
+            transition: all 0.1s ease;
+        }
+
+        .vote-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .signature-counter {
+            font-variant-numeric: tabular-nums;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .fourth-branch {
+            background: linear-gradient(180deg, #0f172a 0%, #1e1135 100%);
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-200 fourth-branch">
+    <!-- NAV -->
+    <nav class="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur-lg border-b border-zinc-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-x-3">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-red-700 to-red-900 flex items-center justify-center shadow-inner">
+                        <i class="fa-solid fa-balance-scale text-white text-3xl"></i>
+                    </div>
+                    <div>
+                        <div class="logo-font text-3xl font-bold tracking-[3px] text-white">WE THE PEOPLE</div>
+                        <div class="text-[10px] text-red-500 font-mono tracking-[4px] -mt-1">FOURTH BRANCH • EST 1776 / RESTORED 2026</div>
+                    </div>
+                </div>
+
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex items-center gap-x-1 text-sm font-medium">
+                    <button onclick="showView('dashboard')" class="nav-link px-5 py-2 rounded-3xl hover:bg-zinc-900 flex items-center gap-x-2 text-zinc-300 hover:text-white" id="nav-dashboard">
+                        <i class="fa-solid fa-chart-line w-4"></i>
+                        <span>DASHBOARD</span>
+                    </button>
+                    <button onclick="showView('propose')" class="nav-link px-5 py-2 rounded-3xl hover:bg-zinc-900 flex items-center gap-x-2 text-zinc-300 hover:text-white" id="nav-propose">
+                        <i class="fa-solid fa-lightbulb w-4"></i>
+                        <span>PROPOSE</span>
+                    </button>
+                    <button onclick="showView('vote')" class="nav-link px-5 py-2 rounded-3xl hover:bg-zinc-900 flex items-center gap-x-2 text-zinc-300 hover:text-white" id="nav-vote">
+                        <i class="fa-solid fa-vote-yea w-4"></i>
+                        <span>VOTE</span>
+                    </button>
+                    <button onclick="showView('recall')" class="nav-link px-5 py-2 rounded-3xl hover:bg-zinc-900 flex items-center gap-x-2 text-zinc-300 hover:text-white" id="nav-recall">
+                        <i class="fa-solid fa-gavel w-4"></i>
+                        <span>RECALL</span>
+                    </button>
+                    <button onclick="showView('manifesto')" class="nav-link px-5 py-2 rounded-3xl hover:bg-zinc-900 flex items-center gap-x-2 text-zinc-300 hover:text-white" id="nav-manifesto">
+                        <i class="fa-solid fa-scroll w-4"></i>
+                        <span>DECLARATION</span>
+                    </button>
+                </div>
+
+                <!-- User Status -->
+                <div class="flex items-center gap-x-3">
+                    <div id="user-status" onclick="connectCitizen()" 
+                         class="flex items-center gap-x-2.5 px-4 py-1.5 rounded-3xl border border-zinc-700 hover:border-red-800 cursor-pointer transition-colors">
+                        <div class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse"></div>
+                        <div>
+                            <div id="user-name" class="text-sm font-semibold">CONNECT SOVEREIGN ID</div>
+                            <div id="user-id" class="text-[10px] text-zinc-500 font-mono">Click to verify</div>
+                        </div>
+                    </div>
+                    
+                    <button onclick="showView('feed')" 
+                            class="hidden md:flex items-center gap-x-2 px-4 py-2 text-sm rounded-3xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 transition-colors">
+                        <i class="fa-solid fa-stream"></i>
+                        <span class="font-medium">FEED</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="max-w-7xl mx-auto px-6 pt-10 pb-8">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-y-6">
+            <div class="max-w-2xl">
+                <div class="inline-flex items-center gap-x-2 px-4 py-1 rounded-3xl bg-red-950/60 border border-red-900 text-red-400 text-xs font-mono tracking-widest mb-4">
+                    <i class="fa-solid fa-globe"></i>
+                    <span>THE DIGITAL REPUBLIC IS NOW LIVE</span>
+                </div>
+                
+                <h1 class="text-6xl md:text-7xl font-bold tracking-tighter leading-none revolution-font">
+                    WE THE PEOPLE.<br>
+                    <span class="text-red-600">THE FOURTH BRANCH.</span>
+                </h1>
+                <p class="mt-4 text-xl text-zinc-400 max-w-md">
+                    Direct democracy. Instant accountability. The Republic restored by the sovereign citizen.
+                </p>
+                
+                <div class="flex items-center gap-x-3 mt-8">
+                    <button onclick="showView('manifesto')" 
+                            class="revolution-btn px-8 py-4 rounded-3xl bg-white text-zinc-950 font-semibold flex items-center gap-x-3 hover:bg-amber-100 transition-all active:scale-[0.985]">
+                        <span>READ THE DECLARATION</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    
+                    <button onclick="signDeclaration()" 
+                            class="revolution-btn px-6 py-4 rounded-3xl border border-red-700 hover:bg-red-950/60 flex items-center gap-x-2 text-red-400 font-medium transition-all">
+                        <i class="fa-solid fa-signature"></i>
+                        <span>SIGN NOW</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="hidden lg:block">
+                <div class="sovereign-badge text-center px-8 py-6 rounded-3xl border border-red-900/60">
+                    <div class="text-xs tracking-[3px] text-red-400 font-mono">SOVEREIGN CITIZENS ONLINE</div>
+                    <div id="live-citizens" class="text-6xl font-bold tabular-nums text-white mt-1">1,248,917</div>
+                    <div class="text-xs text-red-400/70 mt-1">+312 IN THE LAST HOUR</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATS BAR -->
+    <div class="max-w-7xl mx-auto px-6 pb-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <div class="text-xs text-zinc-500">ACTIVE INITIATIVES</div>
+                        <div id="stat-initiatives" class="text-4xl font-bold tabular-nums">47</div>
+                    </div>
+                    <i class="fa-solid fa-lightbulb text-3xl text-amber-500/70"></i>
+                </div>
+            </div>
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <div class="text-xs text-zinc-500">OFFICIALS UNDER RECALL</div>
+                        <div id="stat-recalls" class="text-4xl font-bold tabular-nums">19</div>
+                    </div>
+                    <i class="fa-solid fa-gavel text-3xl text-red-500/70"></i>
+                </div>
+            </div>
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <div class="text-xs text-zinc-500">LAWS PASSED BY THE PEOPLE</div>
+                        <div id="stat-passed" class="text-4xl font-bold tabular-nums">184</div>
+                    </div>
+                    <i class="fa-solid fa-check-double text-3xl text-emerald-500/70"></i>
+                </div>
+            </div>
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <div class="text-xs text-zinc-500">DECLARATION SIGNATURES</div>
+                        <div id="stat-signatures" class="text-4xl font-bold tabular-nums signature-counter">1,847,392</div>
+                    </div>
+                    <i class="fa-solid fa-pen-fancy text-3xl text-red-500/70"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN APP VIEWS -->
+    <div class="max-w-7xl mx-auto px-6 pb-20">
+        
+        <!-- DASHBOARD VIEW -->
+        <div id="dashboard-view" class="view">
+            <div class="flex items-end justify-between mb-6">
+                <div>
+                    <div class="uppercase text-xs tracking-[2px] text-red-500 font-mono">REPUBLIC STATUS</div>
+                    <div class="section-header">The People’s Dashboard</div>
+                </div>
+                <button onclick="igniteAwakening()" 
+                        class="flex items-center gap-x-2 px-5 py-2.5 text-sm rounded-3xl bg-gradient-to-r from-red-700 to-red-800 hover:from-red-600 hover:to-red-700 transition-all text-white font-semibold">
+                    <i class="fa-solid fa-broadcast-tower"></i>
+                    <span>IGNITE THE AWAKENING</span>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Quick Stats + Actions -->
+                <div class="lg:col-span-5 bg-zinc-900 border border-zinc-800 rounded-3xl p-7">
+                    <div class="text-sm font-semibold mb-4 flex items-center gap-x-2">
+                        <i class="fa-solid fa-bolt text-amber-400"></i>
+                        <span>QUICK ACTIONS</span>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <button onclick="showView('propose')" class="w-full flex justify-between items-center px-5 py-4 rounded-2xl bg-zinc-950 hover:bg-zinc-800 border border-zinc-700 transition group">
+                            <div class="flex items-center gap-x-3">
+                                <i class="fa-solid fa-plus text-red-400 group-hover:rotate-90 transition"></i>
+                                <span class="font-medium">Propose New Initiative</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-zinc-600 group-hover:text-white"></i>
+                        </button>
+                        
+                        <button onclick="showView('vote')" class="w-full flex justify-between items-center px-5 py-4 rounded-2xl bg-zinc-950 hover:bg-zinc-800 border border-zinc-700 transition group">
+                            <div class="flex items-center gap-x-3">
+                                <i class="fa-solid fa-check-to-slot text-emerald-400"></i>
+                                <span class="font-medium">Cast Your Vote on Active Laws</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-zinc-600 group-hover:text-white"></i>
+                        </button>
+                        
+                        <button onclick="showView('recall')" class="w-full flex justify-between items-center px-5 py-4 rounded-2xl bg-zinc-950 hover:bg-zinc-800 border border-zinc-700 transition group">
+                            <div class="flex items-center gap-x-3">
+                                <i class="fa-solid fa-user-slash text-orange-400"></i>
+                                <span class="font-medium">Sign a Recall Petition</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-zinc-600 group-hover:text-white"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Live Republic Feed -->
+                <div class="lg:col-span-7 bg-zinc-900 border border-zinc-800 rounded-3xl p-7 flex flex-col">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="text-sm font-semibold flex items-center gap-x-2">
+                            <i class="fa-solid fa-stream text-red-400"></i>
+                            <span>LIVE REPUBLIC FEED</span>
+                        </div>
+                        <button onclick="showView('feed')" class="text-xs px-3 py-1 rounded-2xl border border-zinc-700 hover:bg-zinc-800">FULL FEED →</button>
+                    </div>
+                    
+                    <div id="dashboard-feed" class="flex-1 space-y-3 text-sm overflow-auto max-h-[210px] pr-2 custom-scroll"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROPOSE VIEW -->
+        <div id="propose-view" class="view hidden">
+            <div class="mb-6">
+                <div class="uppercase text-xs tracking-[2px] text-red-500 font-mono">LEGISLATIVE POWER</div>
+                <div class="section-header">Propose a New Initiative</div>
+                <p class="text-zinc-400 mt-1">Every sovereign citizen has the right to put forward law. The People will decide.</p>
+            </div>
+            
+            <div class="max-w-3xl">
+                <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="text-xs uppercase tracking-widest text-zinc-500 block mb-1.5">INITIATIVE TITLE</label>
+                            <input id="prop-title" type="text" placeholder="End Debtor's Prisons for Non-Violent Citizens" 
+                                   class="w-full bg-zinc-950 border border-zinc-700 focus:border-red-700 rounded-2xl px-5 py-3 text-lg outline-none">
+                        </div>
+                        <div>
+                            <label class="text-xs uppercase tracking-widest text-zinc-500 block mb-1.5">CATEGORY</label>
+                            <select id="prop-category" class="w-full bg-zinc-950 border border-zinc-700 focus:border-red-700 rounded-2xl px-5 py-3 text-lg outline-none">
+                                <option value="Liberty">Liberty &amp; Rights</option>
+                                <option value="Justice">Justice Reform</option>
+                                <option value="Governance">Direct Governance</option>
+                                <option value="Economy">Economy &amp; Sound Money</option>
+                                <option value="Family">Family &amp; Courts</option>
+                                <option value="Defense">National Defense</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-5">
+                        <label class="text-xs uppercase tracking-widest text-zinc-500 block mb-1.5">FULL DESCRIPTION</label>
+                        <textarea id="prop-desc" rows="5" placeholder="This initiative ends the practice of jailing citizens for inability to pay child support or non-violent offenses. It restores dignity, focuses resources on real threats, and returns power to families..." 
+                                  class="w-full bg-zinc-950 border border-zinc-700 focus:border-red-700 rounded-3xl px-5 py-4 text-base outline-none resize-y"></textarea>
+                    </div>
+                    
+                    <div class="mt-5">
+                        <label class="text-xs uppercase tracking-widest text-zinc-500 block mb-1.5">WHY THIS MATTERS (IMPACT STATEMENT)</label>
+                        <input id="prop-impact" type="text" placeholder="Restores constitutional limits on government overreach and protects the most vulnerable families" 
+                               class="w-full bg-zinc-950 border border-zinc-700 focus:border-red-700 rounded-2xl px-5 py-3 outline-none">
+                    </div>
+                    
+                    <button onclick="proposeInitiative()" 
+                            class="mt-6 w-full py-4 rounded-3xl bg-gradient-to-r from-red-700 via-red-600 to-red-700 hover:brightness-110 transition font-bold text-lg flex items-center justify-center gap-x-3">
+                        <i class="fa-solid fa-rocket"></i>
+                        <span>SUBMIT TO THE SOVEREIGN LEDGER</span>
+                    </button>
+                    
+                    <div class="text-center text-[10px] text-zinc-500 mt-3 font-mono tracking-widest">RECORDED IMMUTABLY • VISIBLE TO ALL CITIZENS INSTANTLY</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VOTE VIEW -->
+        <div id="vote-view" class="view hidden">
+            <div class="mb-6 flex items-end justify-between">
+                <div>
+                    <div class="uppercase text-xs tracking-[2px] text-red-500 font-mono">DIRECT DEMOCRACY</div>
+                    <div class="section-header">Active Votes — Cast Your Will</div>
+                </div>
+                <div class="text-xs px-3 py-1 bg-zinc-900 border border-zinc-700 rounded-2xl text-zinc-400">Your vote is recorded on the Sovereign Ledger</div>
+            </div>
+            
+            <div id="proposals-list" class="grid grid-cols-1 lg:grid-cols-2 gap-5"></div>
+        </div>
+
+        <!-- RECALL VIEW -->
+        <div id="recall-view" class="view hidden">
+            <div class="mb-6">
+                <div class="uppercase text-xs tracking-[2px] text-red-500 font-mono">ACCOUNTABILITY MECHANISM</div>
+                <div class="section-header">Recall Corrupt or Unresponsive Officials</div>
+                <p class="text-zinc-400">10% of registered citizens in jurisdiction triggers automatic special election.</p>
+            </div>
+            
+            <div id="recalls-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+        </div>
+
+        <!-- MANIFESTO / DECLARATION VIEW -->
+        <div id="manifesto-view" class="view hidden">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-8">
+                    <div class="inline px-4 py-1 rounded-3xl bg-red-950 text-red-400 text-xs tracking-[3px] font-mono">THE LIVING DOCUMENT</div>
+                    <h2 class="text-6xl font-bold tracking-tighter mt-3">SECOND AMERICAN<br>REVOLUTION DECLARATION</h2>
+                    <p class="text-red-400 mt-2">We The People hereby establish the Fourth Branch of Government</p>
+                </div>
+                
+                <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-10 manifesto-text leading-relaxed text-lg">
+                    <p class="font-semibold text-xl mb-6">When in the course of human events it again becomes necessary for the People to dissolve the political bands which have connected them to a system of corruption...</p>
+                    
+                    <p class="mb-5">We hold these truths to be self-evident: that all men and women are created equal and sovereign, that they are endowed by their Creator with certain unalienable Rights, and that among these are Life, Liberty, Property, and the pursuit of Happiness through direct self-governance.</p>
+                    
+                    <p class="mb-5">The three branches of government have become captured by special interests, foreign powers, financial cartels, and a permanent bureaucratic class that serves itself rather than We the People.</p>
+                    
+                    <div class="my-8 pl-6 border-l-4 border-red-700">
+                        <p class="font-semibold">Grievances include but are not limited to:</p>
+                        <ul class="mt-3 space-y-1.5 text-base">
+                            <li class="flex gap-x-2"><span class="text-red-500">•</span> Endless wars and foreign entanglements without consent of the governed</li>
+                            <li class="flex gap-x-2"><span class="text-red-500">•</span> Weaponization of courts and family law against fathers and families</li>
+                            <li class="flex gap-x-2"><span class="text-red-500">•</span> Debtor’s prisons for non-violent citizens and child support obligations</li>
+                            <li class="flex gap-x-2"><span class="text-red-500">•</span> Surveillance state, Flock cameras, and erosion of privacy</li>
+                            <li class="flex gap-x-2"><span class="text-red-500">•</span> Financial slavery through inflation, taxation without representation, and unbacked currency</li>
+                            <li class="flex gap-x-2"><span class="text-red-500">•</span> Collusion between Big Tech, media, pharma, and the administrative state</li>
+                        </ul>
+                    </div>
+                    
+                    <p class="mb-5"><strong>THEREFORE</strong>, We the Sovereign Citizens of the United States, exercising our inherent right as the true source of all governmental power, do hereby ordain and establish the <span class="font-bold text-red-400">FOURTH BRANCH OF GOVERNMENT</span> — the direct, digital, and unfiltered voice of the People.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 my-8 text-base">
+                        <div>
+                            <div class="font-bold mb-2 text-red-400">POWERS OF THE FOURTH BRANCH:</div>
+                            <ul class="space-y-1 text-sm">
+                                <li>1. Direct vote on all major legislation</li>
+                                <li>2. Recall of any elected or appointed official with 10% signatures</li>
+                                <li>3. Citizen-initiated constitutional amendments</li>
+                                <li>4. Real-time transparency of all government spending</li>
+                                <li>5. Binding referenda on war, treaties, and debt</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="font-bold mb-2 text-red-400">WE DEMAND:</div>
+                            <ul class="space-y-1 text-sm">
+                                <li>• Immediate end to incarceration for debt and non-violent offenses</li>
+                                <li>• Full audit and restructuring of family courts</li>
+                                <li>• Return to sound money and honest currency</li>
+                                <li>• Term limits and personal liability for officials</li>
+                                <li>• Secure, anonymous digital voting infrastructure</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <p class="text-center italic text-red-300 mt-8">"Rise. Act. Restore. The Republic does not die — it sleeps in the hearts of the People until we awaken it."</p>
+                </div>
+                
+                <div class="mt-8 flex flex-col items-center">
+                    <div class="flex items-center gap-x-4">
+                        <button onclick="signDeclaration()" 
+                                class="px-10 py-5 text-xl font-bold rounded-3xl bg-gradient-to-r from-red-700 to-red-600 hover:from-red-600 hover:to-red-500 transition flex items-center gap-x-3 shadow-lg shadow-red-950">
+                            <i class="fa-solid fa-signature text-2xl"></i>
+                            <span>AFFIX YOUR SOVEREIGN SEAL</span>
+                        </button>
+                    </div>
+                    <div class="mt-4 text-xs text-center text-zinc-400">Your signature becomes part of the permanent, living record.<br>Already signed by <span id="manifesto-count" class="font-mono text-red-400">1,847,392</span> sovereign citizens.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FEED VIEW -->
+        <div id="feed-view" class="view hidden">
+            <div class="mb-6 flex justify-between items-end">
+                <div>
+                    <div class="uppercase text-xs tracking-[2px] text-red-500 font-mono">THE PEOPLE SPEAK</div>
+                    <div class="section-header">Republic Activity Feed</div>
+                </div>
+                <button onclick="postToFeed()" class="px-5 py-2 rounded-3xl border border-zinc-600 hover:bg-zinc-800 flex items-center gap-x-2 text-sm">
+                    <i class="fa-solid fa-edit"></i>
+                    <span>POST TO THE REPUBLIC</span>
+                </button>
+            </div>
+            
+            <div id="full-feed" class="space-y-3 max-w-3xl"></div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast" class="hidden fixed bottom-6 right-6 bg-zinc-900 border border-zinc-700 text-white px-6 py-3.5 rounded-3xl flex items-center gap-x-3 shadow-2xl z-[100]">
+        <i class="fa-solid fa-check-circle text-emerald-400"></i>
+        <div id="toast-text" class="font-medium"></div>
+    </div>
+
+    <footer class="border-t border-zinc-800 py-6 text-center text-xs text-zinc-500 font-mono tracking-widest">
+        WE THE PEOPLE • FOURTH BRANCH v0.9 — PROTOTYPE • LOCAL-FIRST • SOVEREIGN LEDGER ENABLED<br>
+        <span class="text-red-900">This platform belongs to the People. No corporation. No government. No permission required.</span>
+    </footer>
+
+    <script>
+        // Tailwind script
+        function initTailwind() {
+            document.documentElement.style.setProperty('--accent', '#b91c1c');
+            
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            'revolution': ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif']
+                        }
+                    }
+                }
+            };
+        }
+
+        // Data management
+        let proposals = [];
+        let recalls = [];
+        let feedItems = [];
+        let userData = null;
+        let declarationSignatures = 1847392;
+
+        function saveData() {
+            localStorage.setItem('wtp_proposals', JSON.stringify(proposals));
+            localStorage.setItem('wtp_recalls', JSON.stringify(recalls));
+            localStorage.setItem('wtp_feed', JSON.stringify(feedItems));
+            localStorage.setItem('wtp_signatures', declarationSignatures.toString());
+            if (userData) localStorage.setItem('wtp_user', JSON.stringify(userData));
+        }
+
+        function loadData() {
+            const savedProposals = localStorage.getItem('wtp_proposals');
+            const savedRecalls = localStorage.getItem('wtp_recalls');
+            const savedFeed = localStorage.getItem('wtp_feed');
+            const savedSigs = localStorage.getItem('wtp_signatures');
+            const savedUser = localStorage.getItem('wtp_user');
+
+            if (savedProposals) proposals = JSON.parse(savedProposals);
+            if (savedRecalls) recalls = JSON.parse(savedRecalls);
+            if (savedFeed) feedItems = JSON.parse(savedFeed);
+            if (savedSigs) declarationSignatures = parseInt(savedSigs);
+            if (savedUser) userData = JSON.parse(savedUser);
+        }
+
+        function seedInitialData() {
+            if (proposals.length === 0) {
+                proposals = [
+                    {
+                        id: 1,
+                        title: "End Debtor's Prisons & Incarceration for Non-Violent Child Support Cases",
+                        desc: "Material change in circumstances via family court reform. No citizen shall be jailed for inability to pay support or non-violent offenses. Resources redirected to actual public safety threats.",
+                        category: "Justice",
+                        yes: 124789,
+                        no: 18742,
+                        abstain: 9341,
+                        timestamp: "2026-01-12T14:22:00Z",
+                        impact: "Restores families, ends modern debtors prison, reduces prison population 18%"
+                    },
+                    {
+                        id: 2,
+                        title: "National Recall Act — 10% Signatures Triggers Special Election for Any Official",
+                        desc: "Any elected or appointed federal, state, or local official can be recalled by petition of 10% of registered voters in their jurisdiction. Automatic special election within 60 days.",
+                        category: "Governance",
+                        yes: 98734,
+                        no: 23456,
+                        abstain: 12890,
+                        timestamp: "2026-01-15T09:41:00Z",
+                        impact: "Restores true accountability. Ends career politicians and uniparty protection."
+                    },
+                    {
+                        id: 3,
+                        title: "Secure Digital Direct Democracy Platform — We the People App",
+                        desc: "Establish this Fourth Branch platform as the official secure channel for citizen-initiated legislation, binding referenda, and real-time oversight of all government spending and contracts.",
+                        category: "Governance",
+                        yes: 156782,
+                        no: 9876,
+                        abstain: 23451,
+                        timestamp: "2026-01-18T22:05:00Z",
+                        impact: "Returns legislative power to its rightful owners — the sovereign People."
+                    },
+                    {
+                        id: 4,
+                        title: "Audit the Fed & Return to Sound Money",
+                        desc: "Full forensic audit of Federal Reserve. Phase out fiat currency manipulation. Explore constitutional currency backed by tangible assets and productivity.",
+                        category: "Economy",
+                        yes: 87321,
+                        no: 34567,
+                        abstain: 15678,
+                        timestamp: "2026-01-20T11:30:00Z",
+                        impact: "Ends inflation tax on the working class and restores honest money."
+                    }
+                ];
+            }
+
+            if (recalls.length === 0) {
+                recalls = [
+                    {
+                        id: 1,
+                        official: "Judge Marcus Hale",
+                        position: "Norfolk Circuit Court",
+                        jurisdiction: "Virginia",
+                        signatures: 87420,
+                        threshold: 125000,
+                        status: "active"
+                    },
+                    {
+                        id: 2,
+                        official: "Senator Elena Voss",
+                        position: "U.S. Senator",
+                        jurisdiction: "Virginia",
+                        signatures: 312450,
+                        threshold: 450000,
+                        status: "active"
+                    },
+                    {
+                        id: 3,
+                        official: "Director Patricia Lang",
+                        position: "Virginia Beach JDR Court",
+                        jurisdiction: "Virginia Beach",
+                        signatures: 28900,
+                        threshold: 42000,
+                        status: "active"
+                    }
+                ];
+            }
+
+            if (feedItems.length === 0) {
+                feedItems = [
+                    { id: 1, user: "Sovereign_1776", action: "signed the Declaration", detail: "Signature #1,847,391 recorded", time: "just now", tx: "0x7f3a9b2c..." },
+                    { id: 2, user: "LibertyForge", action: "voted YES on End Debtor's Prisons", detail: "Tx recorded on Sovereign Ledger", time: "4m ago", tx: "0x4e8d1f9a..." },
+                    { id: 3, user: "Reclaim1776", action: "initiated recall against Judge Hale", detail: "Signature count: 87,420 / 125,000", time: "11m ago", tx: "0x2b6c8e4d..." },
+                    { id: 4, user: "CommonSense2", action: "proposed new initiative", detail: "Audit the Fed & Sound Money", time: "27m ago", tx: "0x9a4f2e1b..." }
+                ];
+            }
+        }
+
+        function generateSovereignID() {
+            return 'SOV-' + Math.random().toString(36).substring(2, 10).toUpperCase() + '-' + Date.now().toString().slice(-6);
+        }
+
+        function generateTxHash() {
+            const chars = '0123456789abcdef';
+            let hash = '0x';
+            for (let i = 0; i < 64; i++) {
+                hash += chars[Math.floor(Math.random() * chars.length)];
+            }
+            return hash;
+        }
+
+        function connectCitizen() {
+            if (userData) {
+                // Already connected - show options
+                const confirmDisconnect = confirm("You are connected as " + userData.name + ". Disconnect and switch sovereign ID?");
+                if (confirmDisconnect) {
+                    userData = null;
+                    localStorage.removeItem('wtp_user');
+                    updateUserUI();
+                }
+                return;
+            }
+
+            const name = prompt("Enter your sovereign name or handle (this stays local):", "Patriot_" + Math.floor(Math.random()*9000)+1000);
+            if (!name) return;
+
+            userData = {
+                name: name.trim(),
+                id: generateSovereignID(),
+                joined: new Date().toISOString(),
+                votes: {}
+            };
+
+            localStorage.setItem('wtp_user', JSON.stringify(userData));
+            updateUserUI();
+            
+            showToast("Welcome to the Fourth Branch, " + name + ". Your voice is now sovereign.");
+            
+            // Add to feed
+            addToFeed(userData.name, "connected as a sovereign citizen", "The Republic grows stronger with every voice", generateTxHash());
+        }
+
+        function updateUserUI() {
+            const statusEl = document.getElementById('user-status');
+            const nameEl = document.getElementById('user-name');
+            const idEl = document.getElementById('user-id');
+
+            if (userData) {
+                nameEl.textContent = userData.name;
+                idEl.textContent = userData.id;
+                statusEl.classList.add('!border-red-700', 'bg-red-950/30');
+                statusEl.onclick = () => {
+                    if (confirm("Disconnect this sovereign session?")) {
+                        userData = null;
+                        localStorage.removeItem('wtp_user');
+                        updateUserUI();
+                    }
+                };
+            } else {
+                nameEl.textContent = "CONNECT SOVEREIGN ID";
+                idEl.textContent = "Click to verify";
+                statusEl.classList.remove('!border-red-700', 'bg-red-950/30');
+                statusEl.onclick = connectCitizen;
+            }
+        }
+
+        function updateLiveStats() {
+            // Fake live growth
+            const citizensEl = document.getElementById('live-citizens');
+            if (citizensEl) {
+                setInterval(() => {
+                    let current = parseInt(citizensEl.textContent.replace(/,/g, ''));
+                    current += Math.floor(Math.random() * 7) + 2;
+                    citizensEl.textContent = current.toLocaleString();
+                }, 45000);
+            }
+
+            // Update stat numbers from data
+            document.getElementById('stat-initiatives').textContent = proposals.length;
+            document.getElementById('stat-recalls').textContent = recalls.filter(r => r.status === 'active').length;
+            
+            const passed = proposals.filter(p => p.yes > p.no * 2).length; // simple heuristic
+            document.getElementById('stat-passed').textContent = passed + 184;
+            
+            document.getElementById('stat-signatures').textContent = declarationSignatures.toLocaleString();
+            const manifestoCount = document.getElementById('manifesto-count');
+            if (manifestoCount) manifestoCount.textContent = declarationSignatures.toLocaleString();
+        }
+
+        function renderProposals() {
+            const container = document.getElementById('proposals-list');
+            if (!container) return;
+            container.innerHTML = '';
+
+            proposals.sort((a, b) => b.yes - a.yes).forEach(proposal => {
+                const total = proposal.yes + proposal.no + proposal.abstain;
+                const yesPct = total > 0 ? Math.round((proposal.yes / total) * 100) : 0;
+                const noPct = total > 0 ? Math.round((proposal.no / total) * 100) : 0;
+
+                const card = document.createElement('div');
+                card.className = `proposal-card bg-zinc-900 border border-zinc-700 rounded-3xl p-6 gov-card`;
+                
+                card.innerHTML = `
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <span class="px-3 py-0.5 text-xs rounded-2xl bg-zinc-800 text-zinc-300 font-mono">${proposal.category}</span>
+                            <div class="font-bold text-xl leading-tight mt-2 pr-4">${proposal.title}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-sm text-zinc-400 line-clamp-3 mb-4">${proposal.desc}</div>
+                    
+                    <div class="mb-4">
+                        <div class="flex justify-between text-xs mb-1.5">
+                            <div><span class="font-bold text-emerald-400">${proposal.yes.toLocaleString()}</span> YES</div>
+                            <div><span class="font-bold text-red-400">${proposal.no.toLocaleString()}</span> NO</div>
+                            <div class="text-zinc-500">${proposal.abstain.toLocaleString()} ABSTAIN</div>
+                        </div>
+                        
+                        <div class="h-2 bg-zinc-800 rounded-full overflow-hidden flex">
+                            <div class="h-2 bg-emerald-500 transition-all" style="width: ${yesPct}%"></div>
+                            <div class="h-2 bg-red-500 transition-all" style="width: ${noPct}%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-2">
+                        <button onclick="voteOnProposal(${proposal.id}, 'yes', this)" 
+                                class="vote-btn flex-1 py-2.5 rounded-2xl bg-emerald-600/90 hover:bg-emerald-500 text-sm font-bold flex items-center justify-center gap-x-2">
+                            <i class="fa-solid fa-thumbs-up"></i> <span>YES</span>
+                        </button>
+                        <button onclick="voteOnProposal(${proposal.id}, 'no', this)" 
+                                class="vote-btn flex-1 py-2.5 rounded-2xl bg-red-600/90 hover:bg-red-500 text-sm font-bold flex items-center justify-center gap-x-2">
+                            <i class="fa-solid fa-thumbs-down"></i> <span>NO</span>
+                        </button>
+                        <button onclick="voteOnProposal(${proposal.id}, 'abstain', this)" 
+                                class="vote-btn px-5 py-2.5 rounded-2xl border border-zinc-600 hover:bg-zinc-800 text-xs font-medium">
+                            ABSTAIN
+                        </button>
+                    </div>
+                    
+                    <div class="mt-4 text-[10px] text-zinc-500 flex justify-between items-center font-mono">
+                        <div>LEDGER #${String(proposal.id).padStart(4, '0')}</div>
+                        <div>${new Date(proposal.timestamp).toLocaleDateString()}</div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function voteOnProposal(proposalId, voteType, btnElement) {
+            const proposal = proposals.find(p => p.id === proposalId);
+            if (!proposal) return;
+
+            // Simple vote - in real would check user already voted
+            if (voteType === 'yes') proposal.yes++;
+            else if (voteType === 'no') proposal.no++;
+            else proposal.abstain++;
+
+            const tx = generateTxHash();
+            
+            // Update UI immediately
+            renderProposals();
+            saveData();
+            updateLiveStats();
+
+            // Toast + feed
+            const voteWord = voteType === 'yes' ? 'YES' : voteType === 'no' ? 'NO' : 'ABSTAIN';
+            showToast(`Vote recorded: ${voteWord} on "${proposal.title.substring(0, 40)}..."`);
+            
+            addToFeed(
+                userData ? userData.name : "Anonymous Sovereign", 
+                `voted ${voteWord} on ${proposal.title}`, 
+                `Impact: ${proposal.impact || 'Direct democracy in action'}`, 
+                tx
+            );
+
+            // Simulate on-chain confirmation
+            setTimeout(() => {
+                showToast(`Sovereign Ledger confirmation: ${tx.substring(0, 18)}...`);
+            }, 1400);
+        }
+
+        function proposeInitiative() {
+            const title = document.getElementById('prop-title').value.trim();
+            const category = document.getElementById('prop-category').value;
+            const desc = document.getElementById('prop-desc').value.trim();
+            const impact = document.getElementById('prop-impact').value.trim();
+
+            if (!title || !desc) {
+                showToast("Title and description required, Patriot.");
+                return;
+            }
+
+            const newProposal = {
+                id: Date.now(),
+                title: title,
+                desc: desc,
+                category: category,
+                yes: 1, // auto yes from proposer
+                no: 0,
+                abstain: 0,
+                timestamp: new Date().toISOString(),
+                impact: impact || "Restores power to We the People"
+            };
+
+            proposals.unshift(newProposal);
+            saveData();
+            renderProposals();
+            updateLiveStats();
+
+            const tx = generateTxHash();
+            showToast("Initiative submitted to the Sovereign Ledger. The People will now decide.");
+            
+            addToFeed(
+                userData ? userData.name : "New Sovereign", 
+                `proposed "${title}"`, 
+                `Category: ${category}. This is how republics are reborn.`, 
+                tx
+            );
+
+            // Clear form
+            document.getElementById('prop-title').value = '';
+            document.getElementById('prop-desc').value = '';
+            document.getElementById('prop-impact').value = '';
+
+            // Auto switch to vote view after short delay
+            setTimeout(() => {
+                showView('vote');
+            }, 1600);
+        }
+
+        function renderRecalls() {
+            const container = document.getElementById('recalls-list');
+            if (!container) return;
+            container.innerHTML = '';
+
+            recalls.forEach(recall => {
+                const pct = Math.min(Math.round((recall.signatures / recall.threshold) * 100), 100);
+                const isRecalled = recall.status === 'recalled' || pct >= 100;
+
+                const card = document.createElement('div');
+                card.className = `gov-card bg-zinc-900 border ${isRecalled ? 'border-emerald-600' : 'border-zinc-700'} rounded-3xl p-6`;
+                
+                card.innerHTML = `
+                    <div class="flex justify-between">
+                        <div>
+                            <div class="font-bold text-xl">${recall.official}</div>
+                            <div class="text-sm text-zinc-400">${recall.position} • ${recall.jurisdiction}</div>
+                        </div>
+                        ${isRecalled ? 
+                            `<div class="px-3 py-1 text-xs rounded-2xl bg-emerald-950 text-emerald-400 font-bold self-start">RECALLED</div>` : 
+                            `<div class="px-3 py-1 text-xs rounded-2xl bg-orange-950 text-orange-400 font-bold self-start">ACTIVE</div>`
+                        }
+                    </div>
+                    
+                    <div class="my-5">
+                        <div class="flex justify-between text-xs mb-1.5">
+                            <div><span class="font-mono font-bold">${recall.signatures.toLocaleString()}</span> / ${recall.threshold.toLocaleString()}</div>
+                            <div class="font-bold ${isRecalled ? 'text-emerald-400' : 'text-orange-400'}">${pct}%</div>
+                        </div>
+                        <div class="h-3 bg-zinc-800 rounded-full overflow-hidden">
+                            <div class="h-3 transition-all duration-500 ${isRecalled ? 'bg-emerald-500' : 'bg-orange-500'}" style="width: ${pct}%"></div>
+                        </div>
+                    </div>
+                    
+                    ${!isRecalled ? `
+                        <button onclick="signRecall(${recall.id}, this)" 
+                                class="w-full py-3 rounded-2xl bg-gradient-to-r from-orange-600 to-red-600 hover:brightness-110 font-bold flex items-center justify-center gap-x-2 text-sm">
+                            <i class="fa-solid fa-pen"></i>
+                            <span>SIGN RECALL PETITION</span>
+                        </button>
+                        <div class="text-center text-[10px] text-zinc-500 mt-2">Your signature moves the needle toward accountability</div>
+                    ` : `
+                        <div class="text-center py-3 bg-emerald-950 rounded-2xl text-emerald-300 text-sm font-bold">
+                            <i class="fa-solid fa-check-double mr-2"></i> 
+                            SPECIAL ELECTION TRIGGERED — THE PEOPLE HAVE SPOKEN
+                        </div>
+                    `}
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function signRecall(recallId, btn) {
+            const recall = recalls.find(r => r.id === recallId);
+            if (!recall || recall.status === 'recalled') return;
+
+            recall.signatures += Math.floor(Math.random() * 1200) + 800; // realistic batch
+            
+            const tx = generateTxHash();
+            const pct = Math.round((recall.signatures / recall.threshold) * 100);
+
+            if (pct >= 100 && recall.status !== 'recalled') {
+                recall.status = 'recalled';
+                showToast("VICTORY! Recall threshold reached. Special election has been triggered.");
+                triggerConfetti();
+            } else {
+                showToast(`Recall petition signed. Current progress: ${pct}%`);
+            }
+
+            saveData();
+            renderRecalls();
+            updateLiveStats();
+
+            addToFeed(
+                userData ? userData.name : "Sovereign Patriot", 
+                `signed recall petition for ${recall.official}`, 
+                `${recall.signatures.toLocaleString()} signatures — ${pct}% complete`, 
+                tx
+            );
+        }
+
+        function signDeclaration() {
+            declarationSignatures += 1;
+            document.getElementById('stat-signatures').textContent = declarationSignatures.toLocaleString();
+            
+            const manifestoCount = document.getElementById('manifesto-count');
+            if (manifestoCount) manifestoCount.textContent = declarationSignatures.toLocaleString();
+
+            const tx = generateTxHash();
+            showToast("Your sovereign seal has been affixed to the living Declaration. Welcome to the Fourth Branch.");
+            
+            triggerConfetti(80);
+
+            addToFeed(
+                userData ? userData.name : "New Signer", 
+                "affixed their sovereign seal to the Second American Revolution Declaration", 
+                "The Fourth Branch grows stronger. Signature #" + declarationSignatures.toLocaleString(), 
+                tx
+            );
+
+            saveData();
+
+            // Bonus: if not connected, gently prompt
+            setTimeout(() => {
+                if (!userData) {
+                    const connect = confirm("Your signature is recorded. Connect your sovereign ID now to track all your actions in the Republic?");
+                    if (connect) connectCitizen();
+                }
+            }, 2200);
+        }
+
+        function addToFeed(user, action, detail, tx) {
+            const newItem = {
+                id: Date.now(),
+                user: user,
+                action: action,
+                detail: detail,
+                time: "just now",
+                tx: tx
+            };
+            
+            feedItems.unshift(newItem);
+            if (feedItems.length > 25) feedItems.pop();
+            
+            saveData();
+            renderFeed();
+            renderDashboardFeed();
+        }
+
+        function renderFeed() {
+            const container = document.getElementById('full-feed');
+            if (!container) return;
+            container.innerHTML = '';
+
+            feedItems.forEach(item => {
+                const el = document.createElement('div');
+                el.className = `bg-zinc-900 border border-zinc-700 rounded-3xl px-6 py-4 text-sm`;
+                el.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="font-bold text-red-400">${item.user}</span> 
+                            <span class="text-zinc-300">${item.action}</span>
+                            <div class="text-xs text-zinc-500 mt-0.5">${item.detail}</div>
+                        </div>
+                        <div class="text-right text-xs text-zinc-500 font-mono whitespace-nowrap">
+                            ${item.time}<br>
+                            <span class="text-red-900">${item.tx}</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(el);
+            });
+        }
+
+        function renderDashboardFeed() {
+            const container = document.getElementById('dashboard-feed');
+            if (!container) return;
+            container.innerHTML = '';
+
+            feedItems.slice(0, 4).forEach(item => {
+                const el = document.createElement('div');
+                el.className = `flex gap-x-3 text-xs border-l-2 border-red-900 pl-3`;
+                el.innerHTML = `
+                    <div class="flex-1 min-w-0">
+                        <span class="font-semibold text-red-400">${item.user}</span> 
+                        <span class="text-zinc-400">${item.action}</span>
+                        <div class="text-[10px] text-zinc-500 truncate">${item.detail}</div>
+                    </div>
+                `;
+                container.appendChild(el);
+            });
+        }
+
+        function postToFeed() {
+            if (!userData) {
+                showToast("Connect your Sovereign ID first to post to the Republic.");
+                connectCitizen();
+                return;
+            }
+            
+            const msg = prompt("What message do you want to broadcast to the Republic? (Keep it powerful and on-mission)");
+            if (!msg || msg.trim() === '') return;
+
+            const tx = generateTxHash();
+            addToFeed(userData.name, msg.trim(), "Posted directly to the sovereign feed", tx);
+            showToast("Message broadcast to every citizen. The awakening spreads.");
+        }
+
+        function igniteAwakening() {
+            const messages = [
+                "You are fucking awesome! Everything in this universe exists for your benefit! The world is yours!",
+                "Rise. Act. Restore. The Republic sleeps in the hearts of the People until we awaken it.",
+                "We are not subjects. We are not livestock. We are the sovereign source of all legitimate power.",
+                "The Fourth Branch is not a request. It is our birthright. Sign it. Share it. Live it.",
+                "Every signature on the Declaration is a nail in the coffin of the old corrupt order."
+            ];
+            
+            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+            
+            const modal = document.createElement('div');
+            modal.className = `fixed inset-0 bg-black/80 flex items-center justify-center z-[200]`;
+            modal.innerHTML = `
+                <div class="max-w-md w-full mx-4 bg-zinc-900 border border-red-800 rounded-3xl p-8 text-center">
+                    <i class="fa-solid fa-broadcast-tower text-5xl text-red-500 mb-4"></i>
+                    <div class="text-xl font-bold mb-2">POWER BLAST READY</div>
+                    <div class="text-sm text-zinc-300 mb-6">Copy this message and blast it to your list. SMS. Email. Print. Word of mouth.<br>The awakening is viral.</div>
+                    
+                    <div class="bg-black p-5 rounded-2xl text-left text-sm font-medium border border-zinc-700 mb-6">
+                        "${randomMsg}"
+                    </div>
+                    
+                    <div class="flex gap-3">
+                        <button onclick="copyBlastText(this, '${randomMsg.replace(/'/g, "\\'")}');" class="flex-1 py-3.5 rounded-2xl bg-red-700 hover:bg-red-600 font-bold">COPY TO CLIPBOARD</button>
+                        <button onclick="this.closest('.fixed').remove()" class="flex-1 py-3.5 rounded-2xl border border-zinc-600 hover:bg-zinc-800">CLOSE</button>
+                    </div>
+                    <div class="text-[10px] text-zinc-500 mt-4">Use your existing SMS lists • VortexStore • mass email drops • print & distribute</div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        function copyBlastText(btn, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const orig = btn.innerHTML;
+                btn.innerHTML = `<i class="fa-solid fa-check mr-2"></i>COPIED — NOW BLAST IT`;
+                setTimeout(() => {
+                    if (btn && btn.parentNode) btn.closest('.fixed').remove();
+                }, 1200);
+            }).catch(() => {
+                // Fallback
+                prompt("Copy this message and blast it:", text);
+                btn.closest('.fixed').remove();
+            });
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const text = document.getElementById('toast-text');
+            text.textContent = message;
+            toast.style.display = 'flex';
+            toast.classList.remove('hidden');
+            
+            setTimeout(() => {
+                toast.style.transition = 'all 0.3s ease';
+                toast.style.opacity = '0';
+                setTimeout(() => {
+                    toast.style.opacity = '1';
+                    toast.style.transition = '';
+                    toast.style.display = 'none';
+                }, 300);
+            }, 4200);
+        }
+
+        function triggerConfetti(count = 120) {
+            const colors = ['#b91c1c', '#f87171', '#fff', '#854d0e'];
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'fixed';
+                particle.style.zIndex = '9999';
+                particle.style.left = Math.random() * window.innerWidth + 'px';
+                particle.style.top = '-10px';
+                particle.style.width = '8px';
+                particle.style.height = '8px';
+                particle.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.opacity = Math.random() + 0.4;
+                particle.style.pointerEvents = 'none';
+                document.body.appendChild(particle);
+
+                const duration = Math.random() * 2800 + 2400;
+                const angle = Math.random() * 70 + 55;
+                const velocity = Math.random() * 3.5 + 2.5;
+
+                let y = -10;
+                let x = parseFloat(particle.style.left);
+                
+                const interval = setInterval(() => {
+                    y += velocity;
+                    x += Math.sin(y / 30) * 1.5;
+                    particle.style.top = y + 'px';
+                    particle.style.left = x + 'px';
+                    
+                    if (y > window.innerHeight + 40) {
+                        clearInterval(interval);
+                        particle.remove();
+                    }
+                }, 16);
+                
+                setTimeout(() => {
+                    if (particle.parentNode) particle.parentNode.removeChild(particle);
+                }, duration);
+            }
+        }
+
+        function showView(viewName) {
+            // Hide all views
+            document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
+            
+            // Show target
+            const target = document.getElementById(viewName + '-view');
+            if (target) target.classList.remove('hidden');
+            
+            // Update nav active states (desktop)
+            document.querySelectorAll('[id^="nav-"]').forEach(nav => {
+                nav.classList.remove('nav-active', 'bg-red-950', 'text-white');
+                if (nav.id === 'nav-' + viewName) {
+                    nav.classList.add('nav-active', 'bg-red-950', 'text-white');
+                }
+            });
+
+            // Special renders when switching
+            if (viewName === 'vote') renderProposals();
+            if (viewName === 'recall') renderRecalls();
+            if (viewName === 'feed') renderFeed();
+            if (viewName === 'dashboard') {
+                renderDashboardFeed();
+                updateLiveStats();
+            }
+        }
+
+        function updateAll() {
+            updateUserUI();
+            updateLiveStats();
+            renderDashboardFeed();
+            renderProposals();
+            renderRecalls();
+            renderFeed();
+            
+            // Set initial active nav
+            const dashNav = document.getElementById('nav-dashboard');
+            if (dashNav) dashNav.classList.add('nav-active', 'bg-red-950', 'text-white');
+        }
+
+        // Keyboard shortcuts
+        function setupKeyboard() {
+            document.addEventListener('keydown', function(e) {
+                if (e.metaKey && e.key === "/") {
+                    e.preventDefault();
+                    const proposeView = document.getElementById('propose-view');
+                    if (!proposeView.classList.contains('hidden')) {
+                        document.getElementById('prop-title').focus();
+                    } else {
+                        showView('propose');
+                        setTimeout(() => document.getElementById('prop-title').focus(), 80);
+                    }
+                }
+                
+                if (e.key === "?" && document.activeElement.tagName === "BODY") {
+                    e.preventDefault();
+                    showView('manifesto');
+                }
+            });
+            
+            // Easter egg
+            let konami = [];
+            const code = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+            document.addEventListener('keyup', function(e) {
+                konami.push(e.key);
+                konami = konami.slice(-10);
+                if (konami.join('') === code.join('')) {
+                    triggerConfetti(300);
+                    showToast("1776 MODE ACTIVATED — THE SPIRIT OF THE FOUNDERS IS WITH YOU");
+                    konami = [];
+                }
+            });
+        }
+
+        // Initialize everything
+        function initializeApp() {
+            initTailwind();
+            loadData();
+            seedInitialData();
+            saveData(); // ensure seeded data is persisted
+            
+            updateAll();
+            setupKeyboard();
+            
+            // Boot message
+            setTimeout(() => {
+                const status = document.getElementById('user-status');
+                if (status && !userData) {
+                    // subtle hint
+                }
+            }, 8000);
+
+            // Make sure dashboard is visible on load
+            const dash = document.getElementById('dashboard-view');
+            if (dash) dash.classList.remove('hidden');
+            
+            // Random live signature growth
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    declarationSignatures += Math.floor(Math.random() * 3) + 1;
+                    const sigEl = document.getElementById('stat-signatures');
+                    const manEl = document.getElementById('manifesto-count');
+                    if (sigEl) sigEl.textContent = declarationSignatures.toLocaleString();
+                    if (manEl) manEl.textContent = declarationSignatures.toLocaleString();
+                }
+            }, 38000);
+
+            // Final touch - show that this is ready for scale
+            console.log('%c[WeThePeople] Fourth Branch prototype initialized. Sovereign Ledger active.', 'color:#854d0e');
+        }
+
+        // Boot
+        window.onload = initializeApp;
+    </script>
+</body>
+</html>
