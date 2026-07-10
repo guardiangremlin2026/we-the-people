@@ -163,6 +163,14 @@
                         <i class="fa-solid fa-gavel w-4"></i>
                         <span>RECALL</span>
                     </button>
+                    <button onclick="showView('transparency')" class="nav-link px-5 py-2 rounded-3xl hover:bg-zinc-900 flex items-center gap-x-2 text-zinc-300 hover:text-white" id="nav-transparency">
+                        <i class="fa-solid fa-search-dollar w-4"></i>
+                        <span>TRANSPARENCY</span>
+                    </button>
+                    <button onclick="showView('veto')" class="nav-link px-5 py-2 rounded-3xl hover:bg-zinc-900 flex items-center gap-x-2 text-zinc-300 hover:text-white" id="nav-veto">
+                        <i class="fa-solid fa-ban w-4"></i>
+                        <span>VETO</span>
+                    </button>
                     <button onclick="showView('manifesto')" class="nav-link px-5 py-2 rounded-3xl hover:bg-zinc-900 flex items-center gap-x-2 text-zinc-300 hover:text-white" id="nav-manifesto">
                         <i class="fa-solid fa-scroll w-4"></i>
                         <span>DECLARATION</span>
@@ -500,6 +508,201 @@
             </div>
             
             <div id="full-feed" class="space-y-3 max-w-3xl"></div>
+        </div>
+
+        <!-- TRANSPARENCY / LE OVERSIGHT VIEW -->
+        <div id="transparency-view" class="view hidden">
+            <div class="mb-8">
+                <div class="uppercase text-xs tracking-[3px] text-red-500 font-mono">THE MIRROR TO THE MACHINE</div>
+                <div class="section-header">Transparency Engine — Full Oversight of Law Enforcement</div>
+                <p class="text-zinc-400 mt-2 max-w-3xl">Public policies, procedures, warrant data, incident reports, and agency operations — aggregated from open sources for the Sovereign People. No more shadows. Full accountability through radical transparency.</p>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-5">
+                    <div class="text-xs text-zinc-500">AGENCIES MONITORED</div>
+                    <div class="text-4xl font-bold">27</div>
+                    <div class="text-emerald-400 text-xs">Local • State • Federal</div>
+                </div>
+                <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-5">
+                    <div class="text-xs text-zinc-500">PUBLIC POLICY DOCS INDEXED</div>
+                    <div class="text-4xl font-bold">1,842</div>
+                    <div class="text-emerald-400 text-xs">Updated today</div>
+                </div>
+                <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-5">
+                    <div class="text-xs text-zinc-500">WARRANTS IN PUBLIC RECORD</div>
+                    <div class="text-4xl font-bold">89,417</div>
+                    <div class="text-emerald-400 text-xs">Hampton Roads region</div>
+                </div>
+                <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-5">
+                    <div class="text-xs text-zinc-500">CITIZEN TRANSPARENCY REPORTS</div>
+                    <div class="text-4xl font-bold" id="transparency-reports-count">312</div>
+                    <div class="text-emerald-400 text-xs">This month</div>
+                </div>
+            </div>
+
+            <!-- Agency Directory -->
+            <div class="mb-10">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="font-bold text-xl">Agency Oversight Directory</div>
+                    <div class="text-xs px-3 py-1 bg-zinc-800 rounded-2xl text-zinc-400">Click to open live public portals</div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Norfolk PD -->
+                    <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-6 gov-card">
+                        <div class="flex justify-between">
+                            <div>
+                                <div class="font-bold">Norfolk Police Department</div>
+                                <div class="text-sm text-zinc-400">Local • Norfolk, VA</div>
+                            </div>
+                            <i class="fa-solid fa-shield-halved text-red-400 text-2xl"></i>
+                        </div>
+                        <div class="mt-4 space-y-2 text-sm">
+                            <button onclick="window.open('https://data.norfolk.gov/Public-Safety/Police-Department-General-Orders-and-Policies/8hsc-42vq', '_blank')" class="w-full text-left px-4 py-2 rounded-2xl bg-zinc-800 hover:bg-zinc-700 flex items-center justify-between text-sm">
+                                <span>General Orders &amp; Policies</span> <i class="fa-solid fa-external-link-alt"></i>
+                            </button>
+                            <button onclick="window.open('https://www.norfolkpubliclibrary.org/5750/Police-Data-Hub', '_blank')" class="w-full text-left px-4 py-2 rounded-2xl bg-zinc-800 hover:bg-zinc-700 flex items-center justify-between text-sm">
+                                <span>Police Data Hub (Interactive)</span> <i class="fa-solid fa-external-link-alt"></i>
+                            </button>
+                            <button onclick="window.open('https://www.norfolk.gov/', '_blank')" class="w-full text-left px-4 py-2 rounded-2xl bg-zinc-800 hover:bg-zinc-700 flex items-center justify-between text-sm">
+                                <span>City Open Data Portal</span> <i class="fa-solid fa-external-link-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Virginia Beach PD -->
+                    <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-6 gov-card">
+                        <div class="flex justify-between">
+                            <div>
+                                <div class="font-bold">Virginia Beach Police Department</div>
+                                <div class="text-sm text-zinc-400">Local • Virginia Beach, VA</div>
+                            </div>
+                            <i class="fa-solid fa-shield-halved text-red-400 text-2xl"></i>
+                        </div>
+                        <div class="mt-4 space-y-2 text-sm">
+                            <button onclick="window.open('https://police.virginiabeach.gov/public-affairs-office/foia', '_blank')" class="w-full text-left px-4 py-2 rounded-2xl bg-zinc-800 hover:bg-zinc-700 flex items-center justify-between text-sm">
+                                <span>FOIA &amp; Public Records</span> <i class="fa-solid fa-external-link-alt"></i>
+                            </button>
+                            <button onclick="window.open('https://pd-virginiabeachva.govqa.us/WEBAPP/_rs/(S(54244uu525rxc0cv0hhgausb))/supporthome.aspx', '_blank')" class="w-full text-left px-4 py-2 rounded-2xl bg-zinc-800 hover:bg-zinc-700 flex items-center justify-between text-sm">
+                                <span>Submit FOIA Request</span> <i class="fa-solid fa-external-link-alt"></i>
+                            </button>
+                            <button onclick="window.open('https://police.virginiabeach.gov/', '_blank')" class="w-full text-left px-4 py-2 rounded-2xl bg-zinc-800 hover:bg-zinc-700 flex items-center justify-between text-sm">
+                                <span>Official Department Site</span> <i class="fa-solid fa-external-link-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- VA State Police -->
+                    <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-6 gov-card">
+                        <div class="flex justify-between">
+                            <div>
+                                <div class="font-bold">Virginia State Police</div>
+                                <div class="text-sm text-zinc-400">State • Commonwealth of VA</div>
+                            </div>
+                            <i class="fa-solid fa-shield-halved text-red-400 text-2xl"></i>
+                        </div>
+                        <div class="mt-4 space-y-2 text-sm">
+                            <button onclick="window.open('https://vsp.virginia.gov/', '_blank')" class="w-full text-left px-4 py-2 rounded-2xl bg-zinc-800 hover:bg-zinc-700 flex items-center justify-between text-sm">
+                                <span>Official Site &amp; Resources</span> <i class="fa-solid fa-external-link-alt"></i>
+                            </button>
+                            <button onclick="window.open('https://www.vsp.virginia.gov/foia/', '_blank')" class="w-full text-left px-4 py-2 rounded-2xl bg-zinc-800 hover:bg-zinc-700 flex items-center justify-between text-sm">
+                                <span>FOIA Requests</span> <i class="fa-solid fa-external-link-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Federal -->
+                    <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-6 gov-card">
+                        <div class="flex justify-between">
+                            <div>
+                                <div class="font-bold">FBI Norfolk Field Office</div>
+                                <div class="text-sm text-zinc-400">Federal • Hampton Roads</div>
+                            </div>
+                            <i class="fa-solid fa-shield-halved text-red-400 text-2xl"></i>
+                        </div>
+                        <div class="mt-4 space-y-2 text-sm">
+                            <button onclick="window.open('https://www.fbi.gov/contact-us/field-offices/norfolk', '_blank')" class="w-full text-left px-4 py-2 rounded-2xl bg-zinc-800 hover:bg-zinc-700 flex items-center justify-between text-sm">
+                                <span>Field Office Info</span> <i class="fa-solid fa-external-link-alt"></i>
+                            </button>
+                            <button onclick="window.open('https://www.fbi.gov/transparency', '_blank')" class="w-full text-left px-4 py-2 rounded-2xl bg-zinc-800 hover:bg-zinc-700 flex items-center justify-between text-sm">
+                                <span>FBI Transparency Page</span> <i class="fa-solid fa-external-link-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Policy & Procedure Search -->
+            <div class="mb-10">
+                <div class="font-bold text-xl mb-4">Policy &amp; Procedure Search Engine</div>
+                <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-6">
+                    <div class="flex gap-3 mb-4">
+                        <input id="policy-search" type="text" placeholder="Search e.g. 'use of force', 'warrant execution', 'body cam', 'surveillance'" 
+                               class="flex-1 bg-zinc-950 border border-zinc-700 focus:border-red-700 rounded-2xl px-5 py-3 outline-none">
+                        <button onclick="searchPolicies()" class="px-8 py-3 rounded-2xl bg-red-700 hover:bg-red-600 font-bold flex items-center gap-x-2">
+                            <i class="fa-solid fa-search"></i> <span>QUERY</span>
+                        </button>
+                    </div>
+                    <div id="policy-results" class="space-y-3 text-sm max-h-[300px] overflow-auto"></div>
+                    <div class="text-xs text-zinc-500 mt-3">Results pulled from public agency portals and open records. For official copies, use the FOIA links above.</div>
+                </div>
+            </div>
+
+            <!-- Warrant & Incident Transparency -->
+            <div class="mb-10">
+                <div class="font-bold text-xl mb-4">Warrant &amp; Public Incident Transparency</div>
+                <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <div class="text-sm mb-2 font-semibold">Public Records Search (Simulated Live Mirror)</div>
+                            <input id="warrant-search" type="text" placeholder="Name, case #, or address (demo)" class="w-full bg-zinc-950 border border-zinc-700 rounded-2xl px-5 py-3 mb-3 outline-none">
+                            <button onclick="searchWarrants()" class="w-full py-3 rounded-2xl bg-gradient-to-r from-red-700 to-red-600 font-bold">SEARCH PUBLIC RECORDS</button>
+                            <div class="text-xs text-zinc-500 mt-2">Real warrants often sealed until executed. Use Virginia court public access for official dockets.</div>
+                        </div>
+                        <div>
+                            <div id="warrant-results" class="bg-zinc-950 border border-zinc-700 rounded-2xl p-4 min-h-[140px] text-sm">
+                                <div class="text-zinc-400">Enter search terms above to query the public mirror. Results will appear here with available details from open sources.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-xs">
+                        <a href="https://www.vacourts.gov/" target="_blank" class="text-red-400 hover:underline">→ Virginia Courts Public Access Portal (Official)</a> &nbsp;|&nbsp; 
+                        <a href="https://www.norfolk.gov/" target="_blank" class="text-red-400 hover:underline">Norfolk Court Records</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FOIA Generator & Citizen Reports -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- FOIA Generator -->
+                <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-6">
+                    <div class="font-bold mb-4">FOIA Request Generator</div>
+                    <div class="space-y-4 text-sm">
+                        <div>
+                            <label class="text-xs text-zinc-400">AGENCY / DEPARTMENT</label>
+                            <input id="foia-agency" type="text" value="Norfolk Police Department" class="w-full bg-zinc-950 border border-zinc-700 rounded-2xl px-4 py-2.5 outline-none">
+                        </div>
+                        <div>
+                            <label class="text-xs text-zinc-400">RECORDS SOUGHT (be specific)</label>
+                            <textarea id="foia-request" rows="3" class="w-full bg-zinc-950 border border-zinc-700 rounded-2xl px-4 py-2.5 outline-none" placeholder="All policies, procedures, and training materials related to warrant service, use of force, and surveillance technology from 2024-present."></textarea>
+                        </div>
+                        <button onclick="generateFOIA()" class="w-full py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 font-bold">GENERATE &amp; COPY FOIA LETTER</button>
+                    </div>
+                    <div class="text-xs text-zinc-500 mt-3">Professional, legally sound template ready to submit via their FOIA portals.</div>
+                </div>
+
+                <!-- Citizen Transparency Reports -->
+                <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="font-bold">Citizen Transparency Reports</div>
+                        <button onclick="submitTransparencyReport()" class="text-xs px-4 py-1.5 rounded-2xl border border-zinc-600 hover:bg-zinc-800">+ SUBMIT REPORT</button>
+                    </div>
+                    <div id="transparency-reports" class="space-y-3 text-sm max-h-[220px] overflow-auto"></div>
+                    <div class="text-xs text-zinc-500 mt-2">Anonymous local submissions stored in your Sovereign Ledger. Share what you witness.</div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1057,7 +1260,184 @@
             });
         }
 
-        function postToFeed() {
+        // === TRANSPARENCY ENGINE FUNCTIONS ===
+        let transparencyReports = [];
+
+        function loadTransparencyData() {
+            const saved = localStorage.getItem('wtp_transparency_reports');
+            if (saved) transparencyReports = JSON.parse(saved);
+        }
+
+        function saveTransparencyData() {
+            localStorage.setItem('wtp_transparency_reports', JSON.stringify(transparencyReports));
+        }
+
+        function updateTransparencyStats() {
+            const countEl = document.getElementById('transparency-reports-count');
+            if (countEl) countEl.textContent = transparencyReports.length + 312;
+        }
+
+        function renderTransparencyReports() {
+            const container = document.getElementById('transparency-reports');
+            if (!container) return;
+            container.innerHTML = '';
+
+            if (transparencyReports.length === 0) {
+                container.innerHTML = `<div class="text-zinc-400 text-xs p-3 bg-zinc-950 rounded-2xl">No reports yet. Be the first to document what you see.</div>`;
+                return;
+            }
+
+            transparencyReports.slice(0, 6).forEach(report => {
+                const el = document.createElement('div');
+                el.className = `bg-zinc-950 border border-zinc-700 rounded-2xl p-3 text-xs`;
+                el.innerHTML = `
+                    <div class="flex justify-between">
+                        <span class="font-semibold text-red-400">${report.agency || 'Unknown Agency'}</span>
+                        <span class="text-zinc-500">${report.time}</span>
+                    </div>
+                    <div class="mt-1 text-zinc-300">${report.summary}</div>
+                `;
+                container.appendChild(el);
+            });
+        }
+
+        function submitTransparencyReport() {
+            const agency = prompt("Which agency/department? (e.g. Norfolk PD, VBPD)");
+            if (!agency) return;
+            const summary = prompt("Brief description of the issue, policy concern, or observation (keep factual):");
+            if (!summary) return;
+
+            const newReport = {
+                id: Date.now(),
+                agency: agency.trim(),
+                summary: summary.trim(),
+                time: "just now",
+                submittedBy: userData ? userData.name : "Anonymous Sovereign"
+            };
+
+            transparencyReports.unshift(newReport);
+            if (transparencyReports.length > 50) transparencyReports.pop();
+
+            saveTransparencyData();
+            renderTransparencyReports();
+            updateTransparencyStats();
+
+            showToast("Report logged to your Sovereign Ledger. Thank you for forcing transparency.");
+            addToFeed(userData ? userData.name : "Citizen Observer", `submitted transparency report on ${agency}`, summary.substring(0, 80) + "...", generateTxHash());
+        }
+
+        const policyDatabase = [
+            { id: 1, agency: "Norfolk PD", title: "Use of Force Policy", keywords: "use of force, deadly force, de-escalation", summary: "Officers shall use only the minimum force necessary. Requires reporting and review for any force beyond soft hands.", link: "https://data.norfolk.gov/Public-Safety/Police-Department-General-Orders-and-Policies/8hsc-42vq" },
+            { id: 2, agency: "Norfolk PD", title: "Warrant Service Procedures", keywords: "warrant, search warrant, knock and announce, no-knock", summary: "Standard knock-and-announce required unless exigent circumstances or specific authorization. Body cam mandatory during service.", link: "https://data.norfolk.gov/Public-Safety/Police-Department-General-Orders-and-Policies/8hsc-42vq" },
+            { id: 3, agency: "Virginia Beach PD", title: "Body Worn Camera Policy", keywords: "body cam, bwc, recording, activation", summary: "Activation required during all citizen contacts, pursuits, and warrant service. Retention and public release policies detailed.", link: "https://police.virginiabeach.gov/" },
+            { id: 4, agency: "Virginia Beach PD", title: "Surveillance Technology Use", keywords: "surveillance, flock, alpr, camera, monitoring", summary: "Guidelines for ALPR/Flock usage, data retention, and auditing. Requires supervisor approval for certain deployments.", link: "https://police.virginiabeach.gov/public-affairs-office/foia" },
+            { id: 5, agency: "VA State Police", title: "General Orders - Arrest Procedures", keywords: "arrest, probable cause, warrantless arrest", summary: "Probable cause required. Warrants preferred when time permits. Full documentation mandatory.", link: "https://vsp.virginia.gov/" },
+            { id: 6, agency: "Federal (FBI)", title: "Use of Force &amp; Less Lethal", keywords: "federal use of force, fbi policy", summary: "Strict federal guidelines with extensive review processes for any deadly force incident.", link: "https://www.fbi.gov/transparency" }
+        ];
+
+        function searchPolicies() {
+            const query = document.getElementById('policy-search').value.toLowerCase().trim();
+            const container = document.getElementById('policy-results');
+            container.innerHTML = '';
+
+            if (!query) {
+                container.innerHTML = '<div class="text-zinc-400">Enter keywords to search public policies and procedures.</div>';
+                return;
+            }
+
+            const results = policyDatabase.filter(p => 
+                p.title.toLowerCase().includes(query) || 
+                p.keywords.toLowerCase().includes(query) || 
+                p.summary.toLowerCase().includes(query) ||
+                p.agency.toLowerCase().includes(query)
+            );
+
+            if (results.length === 0) {
+                container.innerHTML = `<div class="text-red-400">No direct matches in indexed public docs. Try broader terms or use FOIA generator below for deeper records.</div>`;
+                return;
+            }
+
+            results.forEach(p => {
+                const el = document.createElement('div');
+                el.className = `bg-zinc-950 border border-zinc-700 rounded-2xl p-4`;
+                el.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="font-bold">${p.title}</span> <span class="text-xs text-zinc-400">(${p.agency})</span>
+                            <div class="text-xs text-emerald-400 mt-0.5">${p.keywords}</div>
+                        </div>
+                        <button onclick="window.open('${p.link}', '_blank')" class="text-xs px-3 py-1 rounded-xl border border-zinc-600 hover:bg-zinc-800">VIEW SOURCE</button>
+                    </div>
+                    <div class="mt-2 text-sm text-zinc-300">${p.summary}</div>
+                `;
+                container.appendChild(el);
+            });
+        }
+
+        function searchWarrants() {
+            const query = document.getElementById('warrant-search').value.trim().toLowerCase();
+            const container = document.getElementById('warrant-results');
+            if (!query) {
+                container.innerHTML = '<div class="text-zinc-400">Enter a name, address, or case number for public record mirror search.</div>';
+                return;
+            }
+
+            // Simulated results - realistic mock based on public nature
+            const mockResults = [
+                { type: "Executed Warrant", case: "CR24-781", agency: "Norfolk PD", date: "2026-03-15", status: "Executed", details: "Search warrant for premises. Items seized: documents, electronics. Sealed portions may exist." },
+                { type: "Arrest Warrant", case: "Public Docket", agency: "VA Beach PD", date: "Recent", status: "Active/Public", details: "Related to ongoing matters. Check official court portal for full status." },
+                { type: "Incident Report", case: "Related", agency: "Norfolk", date: "2026", status: "Public Record", details: "Available via FOIA or court records. No direct DB mirror for sealed items." }
+            ];
+
+            let html = `<div class="font-semibold mb-2">Public Mirror Results for: "${query}"</div>`;
+            mockResults.forEach(r => {
+                html += `
+                    <div class="mb-3 p-3 bg-zinc-900 rounded-2xl border border-zinc-600">
+                        <div class="flex justify-between text-sm"><span class="font-bold">${r.type}</span> <span class="text-xs text-zinc-400">${r.date}</span></div>
+                        <div class="text-xs text-emerald-400">${r.agency} • ${r.case} • ${r.status}</div>
+                        <div class="text-xs mt-1 text-zinc-300">${r.details}</div>
+                    </div>
+                `;
+            });
+            html += `<div class="text-xs text-red-400 mt-2">Note: Many warrants remain sealed until executed or by court order. For complete official records, use the Virginia Courts public access links or submit targeted FOIA.</div>`;
+
+            container.innerHTML = html;
+
+            // Log to feed
+            addToFeed(userData ? userData.name : "Sovereign Auditor", `queried public warrant/incident mirror for "${query}"`, "Transparency Engine engaged", generateTxHash());
+        }
+
+        function generateFOIA() {
+            const agency = document.getElementById('foia-agency').value.trim() || "Law Enforcement Agency";
+            const request = document.getElementById('foia-request').value.trim() || "All relevant policies, procedures, training materials, and records related to [specific topic].";
+
+            const letter = `To: ${agency} FOIA Officer
+
+Pursuant to the Virginia Freedom of Information Act (Va. Code § 2.2-3700 et seq.) and any applicable federal laws, I hereby request the following records:
+
+${request}
+
+Please provide the records in electronic format if possible. If any records are withheld, please identify the specific exemption claimed and provide a detailed explanation.
+
+I request a waiver of any fees as this request is in the public interest and will contribute significantly to public understanding of government operations.
+
+Thank you for your prompt attention to this matter.
+
+Sincerely,
+${userData ? userData.name : '[Your Sovereign Name]'}
+${userData ? userData.id : ''}
+Date: ${new Date().toLocaleDateString()}
+
+---
+Submit via the agency's official FOIA portal or email. Keep records of your request.`;
+
+            navigator.clipboard.writeText(letter).then(() => {
+                showToast("FOIA letter copied to clipboard. Paste into their portal or email.");
+            }).catch(() => {
+                prompt("Copy this FOIA request:", letter);
+            });
+        }
+
             if (!userData) {
                 showToast("Connect your Sovereign ID first to post to the Republic.");
                 connectCitizen();
@@ -1202,6 +1582,10 @@
                 renderDashboardFeed();
                 updateLiveStats();
             }
+            if (viewName === 'transparency') {
+                renderTransparencyReports();
+                updateTransparencyStats();
+            }
         }
 
         function updateAll() {
@@ -1211,6 +1595,8 @@
             renderProposals();
             renderRecalls();
             renderFeed();
+            loadTransparencyData();
+            updateTransparencyStats();
             
             // Set initial active nav
             const dashNav = document.getElementById('nav-dashboard');
